@@ -1,0 +1,26 @@
+{
+  "name": "doc.videodesk.com",
+  "version": "0.1.0",
+  "description": "videodesk documentation",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "gulp tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/videodesk/doc.videodesk.com.git"
+  },
+  "author": "gaspard@videodesk.copm",
+  "license": "copyright videodesk",
+  "bugs": {
+    "url": "https://github.com/videodesk/doc.videodesk.com/issues"
+  },
+  "homepage": "https://github.com/videodesk/doc.videodesk.com",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-bower": "0.0.10",
+    "gulp-connect": "^2.2.0",
+    "gulp-less": "^3.0.1",
+    "gulp-util": "^3.0.3"
+  }
+}

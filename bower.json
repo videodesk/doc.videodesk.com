@@ -1,0 +1,23 @@
+{
+  "name": "doc.videodesk.com",
+  "version": "0.1.0",
+  "homepage": "http://doc.videodesk.com",
+  "authors": [
+    "gaspard@videodesk.com"
+  ],
+  "description": "videodesk documentation website",
+  "main": "index.html",
+  "license": "copyright videodesk",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "underscore": "~1.8.2"
+  }
+}
