@@ -86,6 +86,38 @@ _videodesk['abstraction'] = 'on' ;
             <p>To go further, please read the documentation for <a href="availability_monitoring.html">availability monitoring</a> and <a href="call_button.html">call button.</a></p>
           </article>
 
+          <article>
+            <h3>Code samples</h3>
+
+            <p>This is a simple agent-list display based on <a href="availability_monitoring.html">availability monitoring</a>, <a href="call_button.html">call button</a> and <a href="http:/jquery.com">jQuery</a></p>
+
+<pre><code class="javascript">
+function _videodeskGetAvailability(availability){
+
+  // for debugging purpose,
+  // let's add the availability into the chat object at window level
+  window.chat_callcenter_simple_availability = availability;
+
+  var html = '';
+  for (id in availability.agents) {
+    // ignore unavailable agents
+    if(availability.agents[id].available_mode !== "unavailable") {
+      html += "&lt;div>";
+      html += availability.agents[id].username;
+      html += " - &lt;a href=\"javascript:_vdk.call('text','";
+      html += id;
+      html += "')\">text chat&lt;/a>";
+      html += "&lt;/div>";
+    }
+  };
+
+  // append to DOM
+  $("#chat_agentlist_simple").empty().html(html);
+}
+</code></pre>
+
+          </article>
+
         </div>
       </div>
 
