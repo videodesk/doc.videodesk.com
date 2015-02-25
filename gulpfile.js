@@ -34,3 +34,8 @@ gulp.task('jslib', function() {
     './bower_components/highlight/src/highlight.js',
   ]).pipe(gulp.dest('./build/js/lib/'));
 });
+
+gulp.task('build', function() {
+  gulp.src('./src/*.html')
+    .pipe(gulp.dest('./build/'));
+})
