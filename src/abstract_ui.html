@@ -87,9 +87,27 @@ _videodesk['abstraction'] = 'on' ;
           </article>
 
           <article>
-            <h3>Code samples</h3>
+            <h2>Code samples</h2>
+            <h3>Simple availability checker</h3>
+            <p>This code snippet simply checks if an agent is available and displays a text accordingly in a <code>#chat_availability_simple</code> DOMElement.</p>
+<pre><code class="javascript">
+function _videodeskGetAvailability(availability){
 
-            <p>This is a simple agent-list display based on <a href="availability_monitoring.html">availability monitoring</a>, <a href="call_button.html">call button</a> and <a href="http:/jquery.com">jQuery</a></p>
+  var html = "";
+
+  if(available.nb_agents_available > 0) {
+    html = "&lt;p>We are available :-)&lt;/p>";
+  }
+  else {
+    html = "&lt;p>Sorry, we are not available right now&lt;/p>";
+  }
+
+  // append to DOM
+  $("#chat_availability_simple").empty().html(html);
+}
+</code></pre>
+            <h3>Simple agent-list</h3>
+            <p>This is a simple agent-list display based on <a href="availability_monitoring.html">availability monitoring</a>, <a href="call_button.html">call button</a> and <a href="http:/jquery.com">jQuery</a>. Your website have to be configured in agent-list mode to test this.</p>
 
 <pre><code class="javascript">
 function _videodeskGetAvailability(availability){
