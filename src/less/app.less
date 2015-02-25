@@ -1,3 +1,51 @@
 // Core variables
 @import "../../bower_components/bootstrap/less/variables.less";
 @import "locals.less"; // local variables
+
+.jumbotron {
+  margin-top: -20px;
+}
+
+@sidebar-primary: #777;
+@sidebar-darken: darken(@sidebar-primary, 20%);
+@sidebar-lighten: lighten(@sidebar-primary, 20%);
+
+.nav-side {
+  a {
+    color: @sidebar-primary;
+    &:hover {
+      color: @sidebar-lighten;
+    }
+  }
+
+  display: block;
+  
+  margin: 0;
+  padding: 0;
+  >li {
+    &:hover {
+      border-right: 5px solid @sidebar-darken;
+    }
+    >a {
+      font-weight: bold;
+    }
+  }
+  li {
+    padding:0;
+    margin: 0;
+    display: block;
+    ul {
+      padding: 0 .5em;
+      margin:0;
+      li {
+        font-size: 9pt;
+      }
+    }
+  }
+}
+
+pre {
+  background-color: inherit;
+  //border: none;
+  padding: 0;
+}
