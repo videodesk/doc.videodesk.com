@@ -1,0 +1,6 @@
+# quite nothing
+# *.log
+# .git
+# bower_components/
+# node_modules
+.DS_Store
