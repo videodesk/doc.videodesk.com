@@ -1,5 +1,8 @@
 RewriteEngine On
 
+# redirect empty / to build/
+RewriteRule ^$ /build/ [L]
+
 RewriteCond %{REQUEST_URI} !^/build/
 
 # Don't apply to URLs that go to existing files or folders
