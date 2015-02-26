@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Abstraction marketing demo</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<style>body{padding-top:50px}.chat{padding:80px;background-color:#666;width:450px}.agent-element,.callcenter-element{position:relative;width:300px;background-color:#fff;border:2px solid #555;display:none}.agent-element.available,.callcenter-element.available{display:block}.agent-element img,.callcenter-element img{margin:2px;width:64px;border:1px solid #ccc}.agent-element .name,.callcenter-element .name{margin:5px}.agent-element .action-buttons,.callcenter-element .action-buttons{position:absolute;top:0;right:0;display:none}.agent-element.available .action-buttons,.callcenter-element.available .action-buttons{display:inline}.agent-element .action-buttons button,.callcenter-element .action-buttons button{border:none;background-color:transparent;color:#337ab7}.agent-element button.btn-video,.callcenter-element button.btn-video{display:none}.agent-element.available-video button.btn-video,.callcenter-element.available-video button.btn-video{display:inline}</style>
+</head>
+
+<body>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Agent-list or call-center sample</h1>
+			<p>Displays a list of VideoDesk agents, you are most likely to see us on office hours Paris time (GMT+1) and NY time (CEST).</p>
+			<p>We are in <b class="display_mode">unknown</b> mode.</p>
+			<div class="chat-container">
+				loading...
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var _videodesk= _videodesk || {};
+
+_videodesk['firstname'] = '' ;
+_videodesk['lastname'] = '' ;
+_videodesk['company'] = '' ;
+_videodesk['email'] = '' ;
+_videodesk['phone'] = '' ;
+_videodesk['customer_lang'] = 'en' ;
+_videodesk['customer_id'] = '' ;
+_videodesk['customer_url'] = '' ;
+_videodesk['cart_id'] = '' ;
+_videodesk['cart_url'] = '' ;
+_videodesk['order_id'] = '' ;
+_videodesk['order_url'] = '' ;
+_videodesk['uid'] = '82a085ea79780ceb5a20142b40a450c7' ;  
+_videodesk['lang'] = 'en' ;
+
+_videodesk['abstraction'] = 'on' ;
+
+// _videodesk['debug'] = 1;
+// _videodesk['debug_url'] = 'awsenv1.videodesk.com';
+// _videodesk['module_url'] = 'awsenv1.videodesk.com';
+// _videodesk['pusher_auth_url'] = 'awsenv1.videodesk.com/pusher_auth.php';
+
+
+(function() {
+	var videodesk = document.createElement('script'); videodesk.type = 'text/javascript'; videodesk.async = true;
+	videodesk.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'module-videodesk.com/js/videodesk.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(videodesk, s);
+})();
+
+
+var chat = {
+	initialized: false,
+	init: function() {
+		this.initialized = true;
+		if(this.call_mode === "agentlist") {
+			$(".display_mode").text("agent-list");
+
+			var $chat_attentiongrabber = $('<div class="chat agent-list clearfix"></div>');
+
+			// http://underscorejs.org/#template
+			_.templateSettings = {
+				interpolate: /\{\{(.+?)\}\}/g
+			};
+
+			for (id in this.agents) {
+				var agent_template = '<div class="media agent-element agent-id-{{ uid }}"><div class="media-left"><img src="{{ avatar }}" alt=" {{ username }}"></div><div class="media-body"><p class="name"><b>{{ username }}</b></p><p>{{ job }}</p><span class="action-buttons"></span></div></div>';
+
+				var $agent = $(_.template(agent_template)(this.agents[id]));
+
+				var $button_video = $('<button type="button" class="btn-video"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span></button>')
+					.on("click", function(id) {
+						chat.call("video", this);
+					}.bind(id));
+				var $button_text = $('<button type="button" class="btn-text"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>')
+					.on("click", function() {
+						chat.call("text", this);
+					}.bind(id));
+
+				$(".action-buttons", $agent).append($button_video, $button_text);
+				$chat_attentiongrabber.append($agent);
+			};
+		}
+		else { // mode == callcenter
+			$(".display_mode").text("call-center");
+			var $chat_attentiongrabber = $('<div class="chat callcenter"></div>');
+			var $callcenter = $('<div class="media callcenter-element"><div class="media-left"><img src="images/call-center.png" alt=""></div><div class="media-body"><p class="name"><b>We are available</b></p><p>Customer service</p><span class="action-buttons"></span></div></div>');
+			var $button_video = $('<button type="button" class="btn-video"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span></button>')
+				.on("click", function(id) {
+					this.call("video", 0);
+				}.bind(this));
+			var $button_text = $('<button type="button" class="btn-text"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>')
+				.on("click", function() {
+					this.call("text", 0);
+				}.bind(this));
+			$(".action-buttons", $callcenter).append($button_video, $button_text);
+			$chat_attentiongrabber.append($callcenter);
+		}
+		$(".chat-container").empty().append($chat_attentiongrabber);
+	},
+	update: function() {
+
+		if(this.call_mode === "agentlist") {
+			var $chat_attentiongrabber = $(".chat-container .agent-list");
+			for (id in this.agents) {
+				var $agent = $(".agent-id-" + id, $chat_attentiongrabber);
+				$agent.removeClass("available").removeClass("available-video");
+				if(this.agents[id].available_mode !== "unavailable") {
+					$agent.addClass("available");
+				}
+				if(this.agents[id].available_mode === "video") {
+					$agent.addClass("available-video")
+				}
+			};
+
+			for (id in this.agents) {
+				console.log("availability: ", this.agents[id].uid, 
+					this.agents[id].username, this.agents[id].available_mode);
+			};
+		}
+		else { // call_mode==callcenter
+			var $callcenteritem = $(".chat-container .callcenter .callcenter-element");
+			console.log("available_video", this.available_video);
+			$callcenteritem.removeClass("available").removeClass("available-video");
+			if(this.available_chat === true) { // text mode
+				$callcenteritem.addClass("available");
+			}
+			if(this.available_video === true) { 
+				$callcenteritem.addClass("available-video");
+			}
+		}
+
+	},
+	call: function(call_type, agent_uid) {
+		// var agent_name = this.agents[agent_uid].username;
+		// console.log("caling agent " + agent_name + " in " + call_type + " mode.");
+		
+		_vdk.call(call_type, agent_uid);
+	}
+};
+
+function _videodeskGetAvailability(availability){
+	// let's merge this into the chat object at window level
+	// note that this time we are using underscore exten to simplify object
+	window.chat = _.extend(window.chat, availability);
+	if(chat.initialized == false) {
+		chat.init();
+	}
+	chat.update();
+};
+
+</script>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js" type="text/javascript" charset="utf-8" async defer></script>
+</html>
