@@ -4,9 +4,69 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Abstraction marketing demo</title>
+	<title>Abstract UI - marketing demo</title>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-<style>body{padding-top:50px}.chat{padding:80px;background-color:#666;width:450px}.agent-element,.callcenter-element{position:relative;width:300px;background-color:#fff;border:2px solid #555;display:none}.agent-element.available,.callcenter-element.available{display:block}.agent-element img,.callcenter-element img{margin:2px;width:64px;border:1px solid #ccc}.agent-element .name,.callcenter-element .name{margin:5px}.agent-element .action-buttons,.callcenter-element .action-buttons{position:absolute;top:0;right:0;display:none}.agent-element.available .action-buttons,.callcenter-element.available .action-buttons{display:inline}.agent-element .action-buttons button,.callcenter-element .action-buttons button{border:none;background-color:transparent;color:#337ab7}.agent-element button.btn-video,.callcenter-element button.btn-video{display:none}.agent-element.available-video button.btn-video,.callcenter-element.available-video button.btn-video{display:inline}</style>
+<style>
+
+.chat {
+	padding: 80px;
+	background-color: #666;
+	width: 450px;
+}
+
+.agent-element, .callcenter-element, .unavailable-element {
+	position: relative;
+	width: 300px;
+	background-color: #fff;
+	border: 2px solid #555;
+	display: none;
+}
+.agent-element.available, .callcenter-element.available {
+	display:block;
+}
+
+.agent-element img, .callcenter-element img , .unavailable-element img{
+	margin:2px;
+	width: 64px;
+	border: 1px solid #ccc;
+}
+
+.agent-element .name, .callcenter-element .name{
+	margin: 5px;
+}
+
+.agent-element .action-buttons, .callcenter-element .action-buttons{
+	position:absolute;
+	top:0;
+	right:0;
+	display: none;
+}
+
+.agent-element.available .action-buttons , .callcenter-element.available .action-buttons{
+	display: inline;
+}
+
+.agent-element .action-buttons button, .callcenter-element .action-buttons button {
+	border:none;
+	background-color: transparent;
+	color: #337ab7;
+}
+
+.agent-element button.btn-video, .callcenter-element button.btn-video {
+	display: none;
+}
+
+.agent-element.available-video button.btn-video, .callcenter-element.available-video button.btn-video {
+	display: inline;
+}
+
+.unavailable-element {
+	color: #a94442;
+	background-color: #f2dede;
+	border-color:#ebccd1;
+}
+
+</style>
 </head>
 
 <body>
@@ -28,9 +88,9 @@
 <script type="text/javascript">
 var _videodesk= _videodesk || {};
 
-_videodesk['firstname'] = '' ;
-_videodesk['lastname'] = '' ;
-_videodesk['company'] = '' ;
+_videodesk['firstname'] = 'Mr. Demo' ;
+_videodesk['lastname'] = 'Testing' ;
+_videodesk['company'] = 'VideoDesk doc' ;
 _videodesk['email'] = '' ;
 _videodesk['phone'] = '' ;
 _videodesk['customer_lang'] = 'en' ;
@@ -45,12 +105,6 @@ _videodesk['lang'] = 'en' ;
 
 _videodesk['abstraction'] = 'on' ;
 
-// _videodesk['debug'] = 1;
-// _videodesk['debug_url'] = 'awsenv1.videodesk.com';
-// _videodesk['module_url'] = 'awsenv1.videodesk.com';
-// _videodesk['pusher_auth_url'] = 'awsenv1.videodesk.com/pusher_auth.php';
-
-
 (function() {
 	var videodesk = document.createElement('script'); videodesk.type = 'text/javascript'; videodesk.async = true;
 	videodesk.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'module-videodesk.com/js/videodesk.js';
@@ -62,6 +116,11 @@ var chat = {
 	initialized: false,
 	init: function() {
 		this.initialized = true;
+
+		// unavailable
+		var $unavailable = $('<div class="media unavailable-element"><div class="media-left"><img src="images/call-center.png" alt=""></div><div class="media-body"><p class="name"><b>Sorry, we are not available</b></p><p>Please try again later</p></div></div>');
+
+
 		if(this.call_mode === "agentlist") {
 			$(".display_mode").text("agent-list");
 
@@ -105,9 +164,18 @@ var chat = {
 			$(".action-buttons", $callcenter).append($button_video, $button_text);
 			$chat_attentiongrabber.append($callcenter);
 		}
+		$chat_attentiongrabber.append($unavailable);
 		$(".chat-container").empty().append($chat_attentiongrabber);
 	},
 	update: function() {
+
+		// toggle the "unavailable" element
+		if(this.nb_agents_available > 0) {
+			$(".unavailable-element").hide();
+		}
+		else {
+			$(".unavailable-element").show();
+		}
 
 		if(this.call_mode === "agentlist") {
 			var $chat_attentiongrabber = $(".chat-container .agent-list");
