@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Abstract UI - demo</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<style>
+	body {padding-top: 50px;}
+	#chat-container button { margin:.5em;}
+	</style>
+</head>
+
+<body>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Simple call center mode with 2 call modes.</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Abstract UI demo</h3>
+				</div>
+				<div class="panel-body" id="chat-container">
+					<!-- chat ui should be appened here -->
+					loading chat interface...
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<p>If an agent is connected and available for video call, the video call button is displayed and clicking on it will make a video call.</p>
+			<p>If an agent is connected and available for text call, the text call button is displayed and clicking on it will make a text call.
+			If nobody is available, no button will be displayed.</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var _videodesk= _videodesk || {};
+
+_videodesk['firstname'] = 'Mr. Demo' ;
+_videodesk['lastname'] = 'Testing' ;
+_videodesk['company'] = 'VideoDesk doc' ;
+_videodesk['email'] = '' ;
+_videodesk['phone'] = '' ;
+_videodesk['customer_lang'] = 'en' ;
+_videodesk['customer_id'] = '' ;
+_videodesk['customer_url'] = '' ;
+_videodesk['cart_id'] = '' ;
+_videodesk['cart_url'] = '' ;
+_videodesk['order_id'] = '' ;
+_videodesk['order_url'] = '' ;
+_videodesk['uid'] = '82a085ea79780ceb5a20142b40a450c7' ;  
+_videodesk['lang'] = 'en' ;
+
+_videodesk['abstraction'] = 'on' ;
+
+(function() {
+	var videodesk = document.createElement('script'); videodesk.type = 'text/javascript'; videodesk.async = true;
+	videodesk.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'module-videodesk.com/js/videodesk.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(videodesk, s);
+})();
+
+
+var chat = {
+	initialized: false,
+	init: function() {
+		this.initialized = true;
+		console.log(this);
+
+		var $chat_attentiongrabber = $('<div></div>');
+		var $button_video = $('<button type="button" class="btn btn-default video  btn-success">Call us</button>');
+		var $button_chat = $('<button type="button" class="btn btn-default chat">Text us</button>');
+
+		$button_video.on('click', function() {
+			this.call("video");
+		}.bind(this));
+
+		$button_chat.on('click', function() {
+			this.call("chat");
+		}.bind(this));
+
+		$chat_attentiongrabber.append($button_video.hide(), $button_chat.hide());
+
+		$("#chat-container").empty().append($chat_attentiongrabber);
+	},
+	update: function() {
+
+		if(this.call_mode !== "callcenter") {
+			alert("this demo is for callcenter only");
+			return;
+		}
+
+		if(this.available_video) {
+			$("#chat-container button.video").show();
+		}
+		else {
+			$("#chat-container button.video").hide();
+		}
+
+		if(this.available_chat) {
+			$("#chat-container button.chat").show();
+		}
+		else {
+			$("#chat-container button.chat").hide();
+		}
+
+	},
+	call: function(call_type) {
+		_vdk.call(call_type, 0);
+	}
+};
+
+function _videodeskGetAvailability(availability){
+	// let's merge this into the chat object at window level
+	window.chat = _.extend(window.chat, availability);
+	if(chat.initialized == false) {
+		chat.init();
+	}
+	chat.update();
+};
+
+</script>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js" type="text/javascript" charset="utf-8" async defer></script>
+</html>
