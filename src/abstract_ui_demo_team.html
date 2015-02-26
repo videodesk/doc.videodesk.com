@@ -107,7 +107,10 @@ var chat = {
 		};
 
 		for (id in this.agents) {
-			var agent_template = '<div class="col-md-3 thumbnail agent-element agent-id-{{ uid }}"><img src="{{ avatar }}" alt="avatar"><div class="caption"><h3 class="name">{{ username }}</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p><div class="action-contact action-buttons"></div><div class="action-contact action-email"><button type="button" class="btn-email btn btn-primary"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Contact by e-mail</button></div></div></div>';
+			var agent_template = '<div class="col-md-3 thumbnail agent-element agent-id-{{ uid }}"><img src="{{ avatar }}" alt="avatar"><div class="caption"><h3 class="name">{{ firstname }}</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p><div class="action-contact action-buttons"></div><div class="action-contact action-email"><button type="button" class="btn-email btn btn-primary"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Contact by e-mail</button></div></div></div>';
+
+			// small hack to extract first name (assuming that firstname is first)
+			this.agents[id].firstname = this.agents[id].username.split(" ")[0];
 
 			var $agent = $(_.template(agent_template)(this.agents[id]));
 
