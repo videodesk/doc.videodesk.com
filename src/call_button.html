@@ -53,7 +53,7 @@
         </div>
         <div class="col-md-9">
           <h1>Call button</h1>
-          <p class="lead">The call button allows you to make a call directly to a specific agent or an agent pool (call-center behavior).</p>
+          <p class="lead">The call button allows you to make calls directly to a specific agent or an agent pool (call-center behavior).</p>
 
           <div class="panel panel-warning">
             <div class="panel-heading">This is an UI abstraction component</div>
@@ -70,7 +70,7 @@
 _vdk.call("text", 0);
 </code></pre>
 
-            <p>Obvously, This cannot be called before the videodesk script to be loaded. It would be a great idea to <a href="availability_monitoring.html">check availability</a> before making a call.</p>
+            <p>This can obvisouly not be called before the VideoDesk script has been loaded. It would be a great idea to <a href="availability_monitoring.html">check availability</a> before making a call.</p>
 
             <h3>Anatomy</h3>
             <p>The <code>_vdk.call</code> method takes 2 arguments</p>
@@ -81,7 +81,7 @@ _vdk.call("text", 0);
 
             <h3>Call mode</h3>
 
-            <p>If your videodesk account allows video chat and if the target agent (or pool) is available, you can initiate a "video" call, let's make one:</p>
+            <p>If your VideoDesk account allows video chat and if the target agent (or pool) is available, you can initiate a "video" call, let's make one:</p>
 
 <pre><code class="js">
 _vdk.call("video", 0);
@@ -89,17 +89,17 @@ _vdk.call("video", 0);
 
             <h3>Agent uid</h3>
 
-            <p>Each agent is identified across websites with an unique <code>agent_uid</code>. If you have a multi-site account, his/her display name may change as well as his/her avatar picture, and his/her availability but his/her <code>agent_uid</code> will remain.</p>
+            <p>Each agent is identified across websites with an unique <code>agent_uid</code>. If you have a multi-site account, his/her display name may change as well as his/her avatar picture, and his/her availability but his/her <code>agent_uid</code> will remain the same.</p>
 
             <p>You can use a static agent uid (see <a href="#">what is my <code>agent_uid</code></a>) or gather this from the <a href="availability_monitoring.html">availability object</a>.</p>
 
-            <p><code>agent_uid</code> is a string containibg a hash "03232de131b797f22b90ca296cbd4bd1". This code sample calls Gaspard on the http://www.videodesk.com website (if I am available).</p>
+            <p><code>agent_uid</code> is a string containing a hash "03232de131b797f22b90ca296cbd4bd1". This code sample calls Gaspard on the http://www.videodesk.com website (if I am available).</p>
 
 <pre><code class="js">
 _vdk.call("text", "03232de131b797f22b90ca296cbd4bd1");
 </code></pre>
 
-            <p>If you do not have individual agents availability nor hash identifyers (because you may be in call-center mode), you can call a pool and the call will be distributed among available agents which have the capacity to answer to this <code>call_mode</code>. To do this, simply set the <code>agent_uid</code> as 0 (integer)</p>
+            <p>If you do not have individual agents' availability or hash identifyers (because you may be in call-center mode), you can call a pool and the call will be distributed among available agents who are able to answer in this <code>call_mode</code>. To do this, simply set the <code>agent_uid</code> to 0 (integer)</p>
 
           </article>
 
