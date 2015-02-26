@@ -92,16 +92,13 @@ _videodesk['abstraction'] = 'on' ;
             <p>This code snippet simply checks if an agent is available and displays a text accordingly in a <code>#chat_availability_simple</code> DOMElement.</p>
 <pre><code class="javascript">
 function _videodeskGetAvailability(availability){
-
   var html = "";
-
   if(available.nb_agents_available > 0) {
     html = "&lt;p>We are available :-)&lt;/p>";
   }
   else {
     html = "&lt;p>Sorry, we are not available right now&lt;/p>";
   }
-
   // append to DOM
   $("#chat_availability_simple").empty().html(html);
 }
@@ -111,11 +108,6 @@ function _videodeskGetAvailability(availability){
 
 <pre><code class="javascript">
 function _videodeskGetAvailability(availability){
-
-  // for debugging purpose,
-  // let's add the availability into the chat object at window level
-  window.chat_callcenter_simple_availability = availability;
-
   var html = '';
   for (id in availability.agents) {
     // ignore unavailable agents
