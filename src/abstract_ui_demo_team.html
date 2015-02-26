@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Abstraction</title>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<style>
+body {padding-top: 50px;}
+
+.agent-element {
+	margin: 2em;
+}
+.agent-element  img {
+	width: 100%;
+}
+
+.agent-element .action-contact {
+	border-top: 1px solid #ccc;
+	text-align: center;
+}
+.agent-element .action-contact button {
+	margin:.5em .2em;
+}
+
+.agent-element.available {
+	border: 1px solid #337ab7;
+}
+
+.agent-element .action-buttons {
+	display: none;
+}
+
+.agent-element.available .action-buttons {
+	display: block;
+}
+
+.agent-element button.btn-video {
+	display: none;
+}
+
+.agent-element.available-video button.btn-video {
+	display: inline;
+}
+
+.agent-element.available .action-email {
+	display:none;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Persistent agent list sample</h1>
+			<p>A list of agents is drawn and call buttons are displayed depending on their availability.</p>
+			<div class="chat-container">
+				loading...
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var _videodesk= _videodesk || {};
+
+_videodesk['firstname'] = 'Mr. Demo' ;
+_videodesk['lastname'] = 'Testing' ;
+_videodesk['company'] = 'VideoDesk doc' ;
+_videodesk['email'] = '' ;
+_videodesk['phone'] = '' ;
+_videodesk['customer_lang'] = 'en' ;
+_videodesk['customer_id'] = '' ;
+_videodesk['customer_url'] = '' ;
+_videodesk['cart_id'] = '' ;
+_videodesk['cart_url'] = '' ;
+_videodesk['order_id'] = '' ;
+_videodesk['order_url'] = '' ;
+_videodesk['uid'] = '82a085ea79780ceb5a20142b40a450c7' ;  
+_videodesk['lang'] = 'en' ;
+
+_videodesk['abstraction'] = 'on' ;
+
+(function() {
+	var videodesk = document.createElement('script'); videodesk.type = 'text/javascript'; videodesk.async = true;
+	videodesk.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'module-videodesk.com/js/videodesk.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(videodesk, s);
+})();
+
+
+
+var chat = {
+	initialized: false,
+	init: function() {
+		this.initialized = true;
+
+		var $chat_attentiongrabber = $('<div class="chat agent-list row"></div>');
+
+		// http://underscorejs.org/#template
+		_.templateSettings = {
+			interpolate: /\{\{(.+?)\}\}/g
+		};
+
+		for (id in this.agents) {
+			var agent_template = '<div class="col-md-3 thumbnail agent-element agent-id-{{ uid }}"><img src="{{ avatar }}" alt="avatar"><div class="caption"><h3 class="name">{{ username }}</h3><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p><div class="action-contact action-buttons"></div><div class="action-contact action-email"><button type="button" class="btn-email btn btn-primary"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Contact by e-mail</button></div></div></div>';
+
+			var $agent = $(_.template(agent_template)(this.agents[id]));
+
+			var $button_video = $('<button type="button" class="btn-video btn btn-primary"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Video Call</button>')
+				.on("click", function(id) {
+					chat.call("video", this);
+				}.bind(id));
+			var $button_chat = $('<button type="button" class="btn-chat btn btn-primary"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Text Chat</button>')
+				.on("click", function() {
+					chat.call("text", this);
+				}.bind(id));
+
+			$(".action-buttons", $agent).append($button_video, $button_chat);
+			$chat_attentiongrabber.append($agent);
+		};
+		$(".chat-container").empty().append($chat_attentiongrabber);
+	},
+	update: function() {
+
+		var $chat_attentiongrabber = $(".chat-container .agent-list");
+		for (id in this.agents) {
+			var $agent = $(".agent-id-" + id, $chat_attentiongrabber);
+			$agent.removeClass("available").removeClass("available-video");
+			if(this.agents[id].available_mode !== "unavailable") {
+				$agent.addClass("available");
+			}
+			if(this.agents[id].available_mode === "video") {
+				$agent.addClass("available-video")
+			}
+		};
+
+		for (id in this.agents) {
+			console.log("availability: ", this.agents[id].uid, this.agents[id].username, this.agents[id].available_mode);
+		};
+
+	},
+	call: function(call_type, agent_uid) {
+		// var agent_name = this.agents[agent_uid].username;
+		// console.log("caling agent " + agent_name + " in " + call_type + " mode.");
+		
+		_vdk.call(call_type, agent_uid);
+	}
+};
+
+function _videodeskGetAvailability(availability){
+	// let's merge this into the chat object at window level
+	// note that this time we are using underscore exten to simplify object
+	window.chat = _.extend(window.chat, availability);
+	if(chat.initialized == false) {
+		chat.init();
+	}
+	chat.update();
+};
+
+</script>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript" charset="utf-8" async defer></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js" type="text/javascript" charset="utf-8" async defer></script>
+</html>
