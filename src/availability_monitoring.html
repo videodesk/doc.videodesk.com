@@ -65,7 +65,7 @@
         </div>
         <div class="col-md-9">
           <h1>Availability monitoring</h1>
-          <p class="lead">Availability monitoring allows you to keep track of agents status changes. It is available for Agent-List mode and for Call-center mode.</p>
+          <p class="lead">Availability monitoring allows you to keep track of agents' status changes. It is available for Agent-List mode and for Call-center mode.</p>
 
           <div class="panel panel-warning">
             <div class="panel-heading">This is an UI abstraction component</div>
@@ -76,7 +76,7 @@
 
           <article id="toc__videodeskGetAvailability">
             <h2>The <code>_videodeskGetAvailability</code> method</h2>
-            <p>To get the availability, just define a <code>_videodeskGetAvailability</code> function at the <code>window</code> level of your code, here is a sample usage:</p>
+            <p>To receive availability information, just define a <code>_videodeskGetAvailability</code> function at the <code>window</code> level of your code, here is a sample usage:</p>
 
 <pre><code class="js">
 function _videodeskGetAvailability(availability){
@@ -90,8 +90,8 @@ function _videodeskGetAvailability(availability){
             <h2>The <code>availability</code> object</h2>
             <p>VideoDesk offer two display modes, <b>call-center</b> and <b>agent-list</b>:</p>
             <ul>
-              <li>Call-center display mode publicies global availability. It requires at least 1 agent to be available to give global availability.</li>
-              <li>Agent-list display mode publicies global availability as well and adds individual details upon agents availability ##rephrase this ##</li>
+              <li>Call-center display mode shows global availability. It requires at least 1 agent to be available to give global availability.</li>
+              <li>Agent-list display mode also shows global availability, but provides additional details about each available individual such as name, job title and picture.</li>
             </ul>
 
             <h3>Call-center display mode</h3>
@@ -109,7 +109,7 @@ function _videodeskGetAvailability(availability){
               <li><code>call_mode</code> (string) "callcenter"</li>
               <li><code>agents</code> (object) an empty object</li>
               <li><code>available_chat</code> (boolean) true when at least 1 agent is available for (text) chat</li>
-              <li><code>available_video</code> (boolean) true at least 1 agent is available for video chat</li>
+              <li><code>available_video</code> (boolean) true when at least 1 agent is available for video chat</li>
               <li><code>nb_agents_available</code> (int) the number of available agents</li>
             </ul>
 
@@ -146,7 +146,7 @@ function _videodeskGetAvailability(availability){
   "available_chat": true
 }
 </code></pre>
-          <p>The variables are quite the same as in call-center mode, except that in agent-list mode, the <code>call_mode</code> is set to "agentlist" and the <code>agents</code> object is not empty.</p>
+          <p>The variables are quite similar to call-center mode, but in agent-list mode, the <code>call_mode</code> is set to "agentlist" and the <code>agents</code> object is not empty.</p>
           <p>Here is a sample agent entry.</p>
 <pre><code class="json">
 "1eaa3547936eeed72dd8459b9b730a2f": {
