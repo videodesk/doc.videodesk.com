@@ -28,12 +28,17 @@ gulp.task('serve', ['watch'], function () {
 
 gulp.task('jslib', function() {
   gulp.src([
-    './bower_components/bootstrap/dist/js/bootstrap.js', 
-    './bower_components/jquery/dist/jquery.js', 
+    './bower_components/bootstrap/dist/js/bootstrap.js',
+    './bower_components/jquery/dist/jquery.js',
     './bower_components/underscore/underscore.js',
     './bower_components/highlight/src/highlight.js',
   ]).pipe(gulp.dest('./build/js/lib/'));
 });
+
+gulp.task('images', function () {
+  gulp.src(['./src/images/**'])
+  .pipe(gulp.dest('./build/images/'));
+})
 
 gulp.task('build', function() {
   gulp.src('./src/*.html')

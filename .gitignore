@@ -33,5 +33,6 @@ bower_components
 #build
 build/*.html
 build/js
+build/images
 build/css
 !build/js/lib/gitkeep
