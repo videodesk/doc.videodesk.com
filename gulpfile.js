@@ -38,7 +38,12 @@ gulp.task('jslib', function() {
 gulp.task('images', function () {
   gulp.src(['./src/images/**'])
   .pipe(gulp.dest('./build/images/'));
-})
+});
+
+gulp.task('fonts', function () {
+  gulp.src(['./bower_components/bootstrap/dist/fonts/**'])
+  .pipe(gulp.dest('./build/fonts/'));
+});
 
 gulp.task('build', function() {
   gulp.src('./src/*.html')
