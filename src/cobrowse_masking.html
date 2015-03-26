@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="videodesk documentation">
+    <meta name="author" content="gaspard">
+
+    <title>cobrowse masking - VideoDesk documentation</title>
+
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css" media="screen">
+      .videodesk-cobrowse-masking-marker {
+      }
+      .videodesk-cobrowse-masking-marker-enabled {
+      }
+      .lock {
+        display: none;
+      }
+      .private-field.videodesk-cobrowse-masking-marker-enabled .lock {
+        display:block;
+        padding: 3px 10px;
+      }
+      .private-field.videodesk-cobrowse-masking-marker-enabled {
+        border-radius: 3px;
+        margin: -3px;
+        padding: 3px;
+        color: #fff;
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">VideoDesk doc</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <ul class="nav-side" data-spy="affix" data-offset-top="10" data-offset-bottom="200">
+            <li>
+              <a href="abstract_ui.html">abstract UI</a>
+            </li>
+            <li>
+              <a href="availability_monitoring.html">availability monitoring</a>
+            </li>
+            <li><a href="call_button.html">call button</a><li>
+            <li><a href="cobrowse_masking.html">cobrowse masking</a><li>
+            <li><a href="other.html">Other features</a></li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <h1>Cobrowse masking</h1>
+          <p class="lead">Mask personnal identifiable information (PII) from the agent while cobrowsing.</p>
+
+          <article id="toc_what">
+            <h2>What is the Cobrowse Masking feature ?</h2>
+
+            <p>While in cobrowse the agent can have a look at the webuser's page. Some of the content may be sensitive data. The Agent should not see nor be able to interfere with this specific content.</p>
+
+            <p>Use a specific class to cloak DOM elements to the cobrowse engine.</p>
+
+            <p>You can cheat and <a class="videodesk-demo" href="javascript:helper_toggleCobrowseMasking()">have a peak by clicking here</a>.</p>
+
+            <form action="#" method="get" accept-charset="utf-8">
+              <div class="form-group">
+                <label for="public">A public input</label>
+                <input type="text" id="public" class="form-control" aria-describedby="public" placeholder="Please read me">
+                <span class="help-block">This input is public, everyone may see its content, such as a search field.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="public_autcomplete">An input with autocomplete = off</label>
+                <div class="private-field videodesk-cobrowse-masking-marker">
+                  <input type="text" id="public_autcomplete" class="form-control" placeholder="I am supposed to be private"
+                autocomplete="off">
+                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
+                </div>
+                <span class="help-block">This input has autocomplete set to off, most likely it is private</span>
+              </div>
+
+              <div class="form-group">
+                <label for="public_hasclass">An input with videodesk-cobrowse-mask class</label>
+                <div class="private-field videodesk-cobrowse-masking-marker">
+                  <input type="text" id="public_hasclass" class="form-control videodesk-cobrowse-mask" placeholder="I am supposed to be private">
+                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
+                </div>
+                <span class="help-block">This input has the videodesk-cobrowse-mask class. It is private</span>
+              </div>
+
+              <div class="form-group">
+                <label for="type_password">A password</label>
+                <div class="private-field videodesk-cobrowse-masking-marker">
+                  <input type="password" id="type_password" class="form-control" placeholder="I am a secret"
+                class="videodesk-cobrowse-mask">
+                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
+                </div>
+                <span class="help-block">This input is a password. It is private</span>
+              </div>
+
+              <div>
+                <input type="submit" value="submit" class="btn btn-primary">
+              </div>
+            </form>
+
+
+          </article>
+
+
+          <article id="toc_how_to_enable">
+            <h2>How to enable Cobrowse Masking</h2>
+
+            <p>VideoDesk's cobrowse masking is enabled by default, this is part of the PCI certification. By default, the cobrows tool will ignore:</p>
+
+            <ul>
+              <li>Every input set as <code>autocomplete=off</code>.</li>
+              <li>Every input set as <code>type=password</code>.</li>
+              <li>Every element set as <code>.videodesk-cobrowse-mask</code>.</li>
+            </ul>
+
+          </article>
+
+          <article id="toc_usage">
+
+            <h2>Usage</h2>
+            <h3>Ignoring zones or fields</h3>
+
+            <p>To ignore a field or a zone, please add the <code>videodesk-cobrowse-mask</code> class to any element.</p>
+
+            <p>In this case, the word 'p4ssw0rd' will be ignored.</p>
+<code class="html"><pre>
+  &lt;div>
+    Please note that your password is
+    &lt;span class="videodesk-cobrowse-mask">p4ssw0rd&lt;/span>
+  &lt;/div>
+</pre></code>
+
+            <p>In this case, the whole address will be ignored.</p>
+<code class="html"><pre>
+  &lt;div>
+    Our product will be shipped at
+    &lt;address class="videodesk-cobrowse-mask">
+      Mozilla Foundation&lt;br>
+      1981 Landings Drive&lt;br>
+      Building K&lt;br>
+      Mountain View, CA 94043-0801&lt;br>
+      USA
+    &lt;/address>
+  &lt;/div>
+</pre></code>
+
+            <p>You can add this class to any form element too. In this case, only the pet question will be available to the agent.</p>
+<code class="html"><pre>
+  &lt;p>Who did you vote for ?&lt;/p>
+  &lt;select class="videodesk-cobrowse-mask">
+    &lt;option>George W Bush&lt;/option>
+    &lt;option>Al Gore&lt;/option>
+    &lt;option>I did not vote&lt;/option>
+  &lt;/div>
+  &lt;p>Why ?&lt;/p>
+  &lt;input type="text" class="videodesk-cobrowse-mask">
+  &lt;p>What is your favorite pet ?&lt;/p>
+  &lt;input type="text">
+  &lt;input type="submit" class="videodesk-cobrowse-mask" value="Send form">
+</pre></code>
+
+          </article>
+          <article id="toc_tweaking">
+
+<h2>Custom rules</h2>
+
+<p>If you want to add more custom masking rules, please just add this JavaScript
+snippet to your page or any of your script:
+on a <code>_vdk.cobrowse_masking</code> object, set the URL of the page and then an
+array of objects that you would like to hide.</p>
+
+<code class="javascript"><pre>
+  _vdk.cobrowse_masking = {
+    "http://www.mywebsite.com/checkout.php": ["#private"]
+  };
+</pre></code>
+
+          </article>
+
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; VideoDesk 2015</p>
+      </footer>
+    </div> <!-- /container -->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/bootstrap.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://raw.githubusercontent.com/twbs/bootstrap/master/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    window.addEventListener('load', function() {
+
+    });
+    </script>
+    <script>
+      var helper_toggleCobrowseMasking = function() {
+        if($(".videodesk-cobrowse-masking-marker-enabled").length) {
+          $(".videodesk-cobrowse-masking-marker").removeClass("videodesk-cobrowse-masking-marker-enabled");
+        }
+        else {
+          $(".videodesk-cobrowse-masking-marker").addClass("videodesk-cobrowse-masking-marker-enabled");
+        }
+      }
+    </script>
+
+  </body>
+</html>
