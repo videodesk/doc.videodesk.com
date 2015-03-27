@@ -111,15 +111,15 @@
             <p>To ignore a field or a zone, please add the <code>videodesk-cobrowse-mask</code> class to any element.</p>
 
             <p>In this case, the word 'p4ssw0rd' will be ignored.</p>
-<code class="html"><pre>
+<pre><code class="html">
   &lt;div>
     Please note that your password is
     &lt;span class="videodesk-cobrowse-mask">p4ssw0rd&lt;/span>
   &lt;/div>
-</pre></code>
+</code></pre>
 
             <p>In this case, the whole address will be ignored.</p>
-<code class="html"><pre>
+<pre><code class="html">
   &lt;div>
     Our product will be shipped at
     &lt;address class="videodesk-cobrowse-mask">
@@ -130,10 +130,10 @@
       USA
     &lt;/address>
   &lt;/div>
-</pre></code>
+</code></pre>
 
             <p>You can add this class to any form element too. In this case, only the pet question will be available to the agent.</p>
-<code class="html"><pre>
+<pre><code class="html xml">
   &lt;p>Who did you vote for ?&lt;/p>
   &lt;select class="videodesk-cobrowse-mask">
     &lt;option>George W Bush&lt;/option>
@@ -145,31 +145,31 @@
   &lt;p>What is your favorite pet ?&lt;/p>
   &lt;input type="text">
   &lt;input type="submit" class="videodesk-cobrowse-mask" value="Send form">
-</pre></code>
+</code></pre>
 
 
             <h3>Advertise to the user</h3>
 
             <p>To reassure the webuser, you may want to explicitly point zones that are not available to the agent. To achieve this, use the <code>.videodesk-cobrowse-masking-marker</code> and <code>.videodesk-cobrowse-masking-marker-enabled</code> classes.</p>
 
-<code class="css"><pre>
+<pre><code class="css">
   .videodesk-cobrowse-masking-marker {
     display: none;
   }
   .videodesk-cobrowse-masking-marker-enabled {
     display: block;
   }
-</pre></code>
+</code></pre>
 
             <p>In your html it should be looking like this</p>
 
-<code class="html"><pre>
+<pre><code class="html">
   &lt;input type="text" class="videodesk-cobrowse-mask">
   &lt;p class="videodesk-cobrowse-masking-marker">
     The Agent will not be able to read the value of the
     above field
   &lt;/p>
-</pre></code>
+</code></pre>
 
 
             <p>The form below gives an example of what you can do.  <a class="videodesk-demo" href="javascript:helper_toggleCobrowseMasking()">Toggle the display by clicking here</a>.</p>
@@ -225,11 +225,11 @@ snippet to your page or any of your script:
 on a <code>_vdk.cobrowse_masking</code> object, set the URL of the page and then an
 array of objects that you would like to hide.</p>
 
-<code class="javascript"><pre>
+<pre><code class="javascript">
   _vdk.cobrowse_masking = {
     "http://www.mywebsite.com/checkout.php": ["#private"]
   };
-</pre></code>
+</code></pre>
 
           </article>
 
