@@ -83,49 +83,9 @@
 
             <p>Use a specific class to cloak DOM elements to the cobrowse engine.</p>
 
-            <p>You can cheat and <a class="videodesk-demo" href="javascript:helper_toggleCobrowseMasking()">have a peak by clicking here</a>.</p>
-
-            <form action="#" method="get" accept-charset="utf-8">
-              <div class="form-group">
-                <label for="public">A public input</label>
-                <input type="text" id="public" class="form-control" aria-describedby="public" placeholder="Please read me">
-                <span class="help-block">This input is public, everyone may see its content, such as a search field.</span>
-              </div>
-
-              <div class="form-group">
-                <label for="public_autcomplete">An input with autocomplete = off</label>
-                <div class="private-field videodesk-cobrowse-masking-marker">
-                  <input type="text" id="public_autcomplete" class="form-control" placeholder="I am supposed to be private"
-                autocomplete="off">
-                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
-                </div>
-                <span class="help-block">This input has autocomplete set to off, most likely it is private</span>
-              </div>
-
-              <div class="form-group">
-                <label for="public_hasclass">An input with videodesk-cobrowse-mask class</label>
-                <div class="private-field videodesk-cobrowse-masking-marker">
-                  <input type="text" id="public_hasclass" class="form-control videodesk-cobrowse-mask" placeholder="I am supposed to be private">
-                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
-                </div>
-                <span class="help-block">This input has the videodesk-cobrowse-mask class. It is private</span>
-              </div>
-
-              <div class="form-group">
-                <label for="type_password">A password</label>
-                <div class="private-field videodesk-cobrowse-masking-marker">
-                  <input type="password" id="type_password" class="form-control" placeholder="I am a secret"
-                class="videodesk-cobrowse-mask">
-                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
-                </div>
-                <span class="help-block">This input is a password. It is private</span>
-              </div>
-
-              <div>
-                <input type="submit" value="submit" class="btn btn-primary">
-              </div>
-            </form>
-
+            <img class="img-responsive img-rounded" alt="cobrowse masking"
+              src="images/cobrowse_masking.png">
+            <p>Please <a href="cobrowse_masking_demo_zones.html" target="_blank">try our demo</a></p>
 
           </article>
 
@@ -211,6 +171,49 @@
   &lt;/p>
 </pre></code>
 
+
+            <p>The form below gives an example of what you can do.  <a class="videodesk-demo" href="javascript:helper_toggleCobrowseMasking()">Toggle the display by clicking here</a>.</p>
+
+            <form action="#" method="get" accept-charset="utf-8">
+              <div class="form-group">
+                <label for="public">A public input</label>
+                <input type="text" id="public" class="form-control" aria-describedby="public" placeholder="Please read me">
+                <span class="help-block">This input is public, everyone may see its content, such as a search field.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="public_autcomplete">An input with autocomplete = off</label>
+                <div class="private-field videodesk-cobrowse-masking-marker">
+                  <input type="text" id="public_autcomplete" class="form-control" placeholder="I am supposed to be private"
+                autocomplete="off">
+                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
+                </div>
+                <span class="help-block">This input has autocomplete set to off, most likely it is private</span>
+              </div>
+
+              <div class="form-group">
+                <label for="public_hasclass">An input with videodesk-cobrowse-mask class</label>
+                <div class="private-field videodesk-cobrowse-masking-marker">
+                  <input type="text" id="public_hasclass" class="form-control videodesk-cobrowse-mask" placeholder="I am supposed to be private">
+                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
+                </div>
+                <span class="help-block">This input has the videodesk-cobrowse-mask class. It is private</span>
+              </div>
+
+              <div class="form-group">
+                <label for="type_password">A password</label>
+                <div class="private-field videodesk-cobrowse-masking-marker">
+                  <input type="password" id="type_password" class="form-control" placeholder="I am a secret"
+                class="videodesk-cobrowse-mask">
+                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
+                </div>
+                <span class="help-block">This input is a password. It is private</span>
+              </div>
+
+              <div>
+                <input type="submit" value="submit" class="btn btn-primary">
+              </div>
+            </form>
 
           </article>
           <article id="toc_tweaking">
