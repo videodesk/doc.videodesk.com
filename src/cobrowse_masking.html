@@ -74,12 +74,12 @@
         </div>
         <div class="col-md-9">
           <h1>Cobrowse masking</h1>
-          <p class="lead">Mask personnal identifiable information (PII) from the agent while cobrowsing.</p>
+          <p class="lead">Mask personally identifiable information (PII) from agents while cobrowsing.</p>
 
           <article id="toc_what">
-            <h2>What is the Cobrowse Masking feature ?</h2>
+            <h2>What is the Cobrowse Masking feature?</h2>
 
-            <p>While in cobrowse the agent can have a look at the webuser's page. Some of the content may be sensitive data. The Agent should not see nor be able to interfere with this specific content.</p>
+            <p>Co-browsing allows agents to see web users' pages. Some of the content displayed may be sensitive data. Agents should not be able to see or interfere with this specific content.</p>
 
             <p>Use a specific class to cloak DOM elements to the cobrowse engine.</p>
 
@@ -93,12 +93,12 @@
           <article id="toc_how_to_enable">
             <h2>How to enable Cobrowse Masking</h2>
 
-            <p>VideoDesk's cobrowse masking is enabled by default, this is part of the PCI certification. By default, the cobrows tool will ignore:</p>
+            <p>VideoDesk's cobrowse masking feature is enabled by default as part of our PCI certification. By default, the cobrowse tool will hide:</p>
 
             <ul>
-              <li>Every input set as <code>autocomplete=off</code>.</li>
-              <li>Every input set as <code>type=password</code>.</li>
-              <li>Every element set as <code>.videodesk-cobrowse-mask</code>.</li>
+              <li>Input set as <code>autocomplete=off</code>.</li>
+              <li>Input set as <code>type=password</code>.</li>
+              <li>Elements set as <code>.videodesk-cobrowse-mask</code>.</li>
             </ul>
 
           </article>
@@ -106,11 +106,11 @@
           <article id="toc_usage">
 
             <h2>Usage</h2>
-            <h3>Ignoring zones or fields</h3>
+            <h3>Hiding zones or fields</h3>
 
-            <p>To ignore a field or a zone, please add the <code>videodesk-cobrowse-mask</code> class to any element.</p>
+            <p>To hide a field or a zone, please add the <code>videodesk-cobrowse-mask</code> class to any element.</p>
 
-            <p>In this case, the word 'p4ssw0rd' will be ignored.</p>
+            <p>In this case, the word 'p4ssw0rd' will be hidden.</p>
 <pre><code class="html">
   &lt;div>
     Please note that your password is
@@ -118,10 +118,10 @@
   &lt;/div>
 </code></pre>
 
-            <p>In this case, the whole address will be ignored.</p>
+            <p>In this case, the whole address will be hidden.</p>
 <pre><code class="html">
   &lt;div>
-    Our product will be shipped at
+    Our product will be shipped to
     &lt;address class="videodesk-cobrowse-mask">
       Mozilla Foundation&lt;br>
       1981 Landings Drive&lt;br>
@@ -132,7 +132,7 @@
   &lt;/div>
 </code></pre>
 
-            <p>You can add this class to any form element too. In this case, only the pet question will be available to the agent.</p>
+            <p>You can add this class to any form element too. In this case, only the question about pets will be displayed to the agent.</p>
 <pre><code class="html xml">
   &lt;p>Who did you vote for ?&lt;/p>
   &lt;select class="videodesk-cobrowse-mask">
@@ -148,9 +148,9 @@
 </code></pre>
 
 
-            <h3>Advertise to the user</h3>
+            <h3>Let the user know</h3>
 
-            <p>To reassure the webuser, you may want to explicitly point zones that are not available to the agent. To achieve this, use the <code>.videodesk-cobrowse-masking-marker</code> and <code>.videodesk-cobrowse-masking-marker-enabled</code> classes.</p>
+            <p>To reassure the webuser, you may want to explicitly point out the zones that are not displayed to the agent. To achieve this, use the <code>.videodesk-cobrowse-masking-marker</code> and <code>.videodesk-cobrowse-masking-marker-enabled</code> classes.</p>
 
 <pre><code class="css">
   .videodesk-cobrowse-masking-marker {
@@ -161,13 +161,13 @@
   }
 </code></pre>
 
-            <p>In your html it should be looking like this</p>
+            <p>In your html it should look like this</p>
 
 <pre><code class="html">
   &lt;input type="text" class="videodesk-cobrowse-mask">
   &lt;p class="videodesk-cobrowse-masking-marker">
-    The Agent will not be able to read the value of the
-    above field
+    The agent will not be able to read the value displayed in the
+    field above.
   &lt;/p>
 </code></pre>
 
@@ -176,26 +176,26 @@
 
             <form action="#" method="get" accept-charset="utf-8">
               <div class="form-group">
-                <label for="public">A public input</label>
+                <label for="public">Public input</label>
                 <input type="text" id="public" class="form-control" aria-describedby="public" placeholder="Please read me">
-                <span class="help-block">This input is public, everyone may see its content, such as a search field.</span>
+                <span class="help-block">This input is public, everyone may see the content. This could be a search field for example.</span>
               </div>
 
               <div class="form-group">
-                <label for="public_autcomplete">An input with autocomplete = off</label>
+                <label for="public_autcomplete">Autocompleted input = off</label>
                 <div class="private-field videodesk-cobrowse-masking-marker">
                   <input type="text" id="public_autcomplete" class="form-control" placeholder="I am supposed to be private"
                 autocomplete="off">
-                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
+                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> This area's content cannot be seen by the agent</div>
                 </div>
                 <span class="help-block">This input has autocomplete set to off, most likely it is private</span>
               </div>
 
               <div class="form-group">
-                <label for="public_hasclass">An input with videodesk-cobrowse-mask class</label>
+                <label for="public_hasclass">Input with the videodesk-cobrowse-mask class</label>
                 <div class="private-field videodesk-cobrowse-masking-marker">
                   <input type="text" id="public_hasclass" class="form-control videodesk-cobrowse-mask" placeholder="I am supposed to be private">
-                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
+                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content in this zone cannot be seen by the agent</div>
                 </div>
                 <span class="help-block">This input has the videodesk-cobrowse-mask class. It is private</span>
               </div>
@@ -205,7 +205,7 @@
                 <div class="private-field videodesk-cobrowse-masking-marker">
                   <input type="password" id="type_password" class="form-control" placeholder="I am a secret"
                 class="videodesk-cobrowse-mask">
-                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content of this area cannot be seen by the Agent</div>
+                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> The content in this zone cannot be seen by the agent</div>
                 </div>
                 <span class="help-block">This input is a password. It is private</span>
               </div>
@@ -237,7 +237,7 @@ array of objects that you would like to hide.</p>
 
             <h2>Demo scripts</h2>
 
-            <p>Please read the code in those demo.</p>
+            <p>Please read the code in these demo pages.</p>
             <ul>
               <li><a href="cobrowse_masking_demo_standard.html">The basic demo</a> if you are too lazy to read the documentation.</li>
               <li><a href="cobrowse_masking_demo_style.html">The style demo</a> makes it obvious to the webuser that he is not being spyed upon.</li>
