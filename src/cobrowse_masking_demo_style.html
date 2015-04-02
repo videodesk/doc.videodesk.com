@@ -80,9 +80,17 @@ _videodesk['order_url'] = '';
 _videodesk['uid'] = '82a085ea79780ceb5a20142b40a450c7';
 _videodesk['lang'] = 'en';
 
+_videodesk['src'] = 'module-videodesk.com/js/videodesk.js';
+_videodesk['src'] = 'modulefront9.videodesk.com/js/videodesk.js';
+_videodesk['module_url'] = 'awsenv9.videodesk.com';
+
+_videodesk['cobrowse_masking'] = {
+  "http://doc.videodesk.com/cobrowse_masking_demo_custom.html": ["#private"]
+};
+
 (function() {
   var videodesk = document.createElement('script'); videodesk.type = 'text/javascript'; videodesk.async = true;
-  videodesk.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'module-videodesk.com/js/videodesk.js';
+  videodesk.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + _videodesk['src'];
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(videodesk, s);
 })();
 

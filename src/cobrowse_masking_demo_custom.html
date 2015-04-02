@@ -19,7 +19,21 @@
     <div class="col-md-12">
       <h1>Custom cobrowse masking demo.</h1>
 
-      yet to be done.
+      <div>
+        <p>Public input</p>
+        <input type="text" id="public" value="public">
+      </div>
+      <hr>
+      <div>
+        <p>Private input</p>
+        <input type="text" id="private" value="private">
+      </div>
+      <hr>
+      <p>Custom script</p>
+<pre><code>
+_videodesk['cobrowse_masking'] = {
+  "<script>document.write(self.location.href);</script>": ["#private"]
+};</code></pre>
 
       <hr>
       <p>Other demos :</p>
@@ -53,12 +67,20 @@ _videodesk['order_url'] = '';
 _videodesk['uid'] = '82a085ea79780ceb5a20142b40a450c7';
 _videodesk['lang'] = 'en';
 
+_videodesk['src'] = 'module-videodesk.com/js/videodesk.js';
+_videodesk['src'] = 'modulefront9.videodesk.com/js/videodesk.js';
+//_videodesk['src'] = 'module-front-row.videodesk.com:8180/js/videodesk.js?v='+Math.random();
+_videodesk['module_url'] = 'awsenv9.videodesk.com';
+
+_videodesk['cobrowse_masking'] = {
+  "http://doc.videodesk.com/cobrowse_masking_demo_custom.html": ["#private"]
+};
+
 (function() {
   var videodesk = document.createElement('script'); videodesk.type = 'text/javascript'; videodesk.async = true;
-  videodesk.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'module-videodesk.com/js/videodesk.js';
+  videodesk.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + _videodesk['src'];
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(videodesk, s);
 })();
-
 </script>
 
 <script src="//code.jquery.com/jquery-2.1.3.min.js" type="text/javascript" charset="utf-8"></script>

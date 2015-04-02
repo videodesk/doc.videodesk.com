@@ -222,14 +222,32 @@
 
 <p>If you want to add more custom masking rules, please just add this JavaScript
 snippet to your page or any of your script:
-on a <code>_vdk.cobrowse_masking</code> object, set the URL of the page and then an
+on the <code>_videodesk</code> object add the <code>['cobrowse_masking']</code> option, set the URL of the page and then an
 array of objects that you would like to hide.</p>
 
 <pre><code class="javascript">
-  _vdk.cobrowse_masking = {
+  _videodesk['cobrowse_masking'] = {
     "http://www.mywebsite.com/checkout.php": ["#private"]
   };
 </code></pre>
+
+<p>Be aware that only the parameters set on the departure page will be used. You have to set those parameters for all the PII data on every domains that you intend to go to.</p>
+
+<p>A good practice is to set these in a site-wide javascript formatted like this.</p>
+
+<pre><code class="javascript">
+  // instanciate the object without squashing previous instance
+  // this property will be read once as the cobrowse starts
+  _videodesk = _videodesk || {};
+
+  // set the masking for every page on each domain
+  _videodesk['cobrowse_masking'] = {
+    "http://www.mywebsite.com/checkout.php": ["#private"],
+    "https://www.mywebsite.com/checkout.php": ["#private"],
+    "https://www.my-other-website.com/payment.php": ["#pin"]
+  };
+</code></pre>
+
 
           </article>
 
