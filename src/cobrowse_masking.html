@@ -93,7 +93,7 @@
           <article id="toc_how_to_enable">
             <h2>How to enable Cobrowse Masking</h2>
 
-            <p>VideoDesk's cobrowse masking feature is enabled by default as part of our PCI certification. By default, the cobrowse tool will hide:</p>
+            <p>VideoDesk's cobrowse masking feature is activated by default as part of our PCI certification. By default, the cobrowse tool will hide:</p>
 
             <ul>
               <li>Input set as <code>autocomplete=off</code>.</li>
@@ -150,7 +150,7 @@
 
             <h3>Let the user know</h3>
 
-            <p>To reassure the webuser, you may want to explicitly point out the zones that are not displayed to the agent. To achieve this, use the <code>.videodesk-cobrowse-masking-marker</code> and <code>.videodesk-cobrowse-masking-marker-enabled</code> classes.</p>
+            <p>To reassure your webusers, you may want to explicitly point out the zones that are not displayed to the agent. To achieve this, use the <code>.videodesk-cobrowse-masking-marker</code> and <code>.videodesk-cobrowse-masking-marker-enabled</code> classes.</p>
 
 <pre><code class="css">
   .videodesk-cobrowse-masking-marker {
@@ -221,8 +221,8 @@
 <h2>Custom rules</h2>
 
 <p>If you want to add more custom masking rules, please just add this JavaScript
-snippet to your page or any of your script:
-on the <code>_videodesk</code> object add the <code>['cobrowse_masking']</code> option, set the URL of the page and then an
+snippet to your page or to any of your script:
+add the <code>['cobrowse_masking']</code> option to the <code>_videodesk</code> object, set the URL of the page and then an
 array of objects that you would like to hide.</p>
 
 <pre><code class="javascript">
@@ -231,9 +231,9 @@ array of objects that you would like to hide.</p>
   };
 </code></pre>
 
-<p>Be aware that only the parameters set on the departure page will be used. You have to set those parameters for all the PII data on every domains that you intend to go to.</p>
+<p>Please note that only the parameters set on the page you launch the co-browse session on will be taken into account, even if you later leave this page. You must therefore set the parameters for all PII data on each domain you intend to visit.</p>
 
-<p>A good practice is to set these in a site-wide javascript formatted like this.</p>
+<p>A good practice is to set these in site-wide JavaScript formatted as below.</p>
 
 <pre><code class="javascript">
   // instanciate the object without squashing previous instance
@@ -257,8 +257,8 @@ array of objects that you would like to hide.</p>
 
             <p>Please read the code in these demo pages.</p>
             <ul>
-              <li><a href="cobrowse_masking_demo_standard.html">The basic demo</a> if you are too lazy to read the documentation.</li>
-              <li><a href="cobrowse_masking_demo_style.html">The style demo</a> makes it obvious to the webuser that he is not being spyed upon.</li>
+              <li><a href="cobrowse_masking_demo_standard.html">The basic demo</a> for if you are too lazy to read the documentation.</li>
+              <li><a href="cobrowse_masking_demo_style.html">The style demo</a> lets the webuser know he is not being spyed on.</li>
               <li><a href="cobrowse_masking_demo_custom.html">Customized ruleset</a> to go a little bit further.</li>
               <li><a href="cobrowse_masking_demo_zones.html">Test the behavior of the script</a> with different rulesets.</li>
             </ul>
