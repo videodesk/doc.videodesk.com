@@ -96,7 +96,6 @@
             <p>VideoDesk's cobrowse masking feature is activated by default as part of our PCI certification. By default, the cobrowse tool will hide:</p>
 
             <ul>
-              <li>Input set as <code>autocomplete=off</code>.</li>
               <li>Input set as <code>type=password</code>.</li>
               <li>Elements set as <code>.videodesk-cobrowse-mask</code>.</li>
             </ul>
@@ -179,16 +178,6 @@
                 <label for="public">Public input</label>
                 <input type="text" id="public" class="form-control" aria-describedby="public" placeholder="Please read me">
                 <span class="help-block">This input is public, everyone may see the content. This could be a search field for example.</span>
-              </div>
-
-              <div class="form-group">
-                <label for="public_autcomplete">Autocompleted input = off</label>
-                <div class="private-field videodesk-cobrowse-masking-marker">
-                  <input type="text" id="public_autcomplete" class="form-control" placeholder="I am supposed to be private"
-                autocomplete="off">
-                  <div class="lock"><i class="glyphicon glyphicon-lock"></i> This area's content cannot be seen by the agent</div>
-                </div>
-                <span class="help-block">This input has autocomplete set to off, most likely it is private</span>
               </div>
 
               <div class="form-group">
