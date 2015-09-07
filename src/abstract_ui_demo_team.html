@@ -81,7 +81,7 @@ _videodesk['cart_id'] = '' ;
 _videodesk['cart_url'] = '' ;
 _videodesk['order_id'] = '' ;
 _videodesk['order_url'] = '' ;
-_videodesk['uid'] = '82a085ea79780ceb5a20142b40a450c7' ;  
+_videodesk['uid'] = '82a085ea79780ceb5a20142b40a450c7' ;
 _videodesk['lang'] = 'en' ;
 
 _videodesk['abstraction'] = 'on' ;
@@ -134,10 +134,10 @@ var chat = {
 		for (id in this.agents) {
 			var $agent = $(".agent-id-" + id, $chat_attentiongrabber);
 			$agent.removeClass("available").removeClass("available-video");
-			if(this.agents[id].available_mode !== "unavailable") {
+			if(this.agents[id].is_text_capable) {
 				$agent.addClass("available");
 			}
-			if(this.agents[id].available_mode === "video") {
+			if(this.agents[id].is_video_capable) {
 				$agent.addClass("available-video")
 			}
 		};
@@ -150,7 +150,7 @@ var chat = {
 	call: function(call_type, agent_uid) {
 		// var agent_name = this.agents[agent_uid].username;
 		// console.log("caling agent " + agent_name + " in " + call_type + " mode.");
-		
+
 		_vdk.call(call_type, agent_uid);
 	}
 };

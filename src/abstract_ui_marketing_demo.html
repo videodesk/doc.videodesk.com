@@ -100,7 +100,7 @@ _videodesk['cart_id'] = '' ;
 _videodesk['cart_url'] = '' ;
 _videodesk['order_id'] = '' ;
 _videodesk['order_url'] = '' ;
-_videodesk['uid'] = '82a085ea79780ceb5a20142b40a450c7' ;  
+_videodesk['uid'] = '82a085ea79780ceb5a20142b40a450c7' ;
 _videodesk['lang'] = 'en' ;
 
 _videodesk['abstraction'] = 'on' ;
@@ -182,16 +182,16 @@ var chat = {
 			for (id in this.agents) {
 				var $agent = $(".agent-id-" + id, $chat_attentiongrabber);
 				$agent.removeClass("available").removeClass("available-video");
-				if(this.agents[id].available_mode !== "unavailable") {
+				if(this.agents[id].is_text_capable) {
 					$agent.addClass("available");
 				}
-				if(this.agents[id].available_mode === "video") {
+				if(this.agents[id].is_video_capable) {
 					$agent.addClass("available-video")
 				}
 			};
 
 			for (id in this.agents) {
-				console.log("availability: ", this.agents[id].uid, 
+				console.log("availability: ", this.agents[id].uid,
 					this.agents[id].username, this.agents[id].available_mode);
 			};
 		}
@@ -199,10 +199,10 @@ var chat = {
 			var $callcenteritem = $(".chat-container .callcenter .callcenter-element");
 			console.log("available_video", this.available_video);
 			$callcenteritem.removeClass("available").removeClass("available-video");
-			if(this.available_chat === true) { // text mode
+			if(this.is_text_capable) { // text mode
 				$callcenteritem.addClass("available");
 			}
-			if(this.available_video === true) { 
+			if(this.is_video_capable) {
 				$callcenteritem.addClass("available-video");
 			}
 		}
@@ -211,7 +211,7 @@ var chat = {
 	call: function(call_type, agent_uid) {
 		// var agent_name = this.agents[agent_uid].username;
 		// console.log("caling agent " + agent_name + " in " + call_type + " mode.");
-		
+
 		_vdk.call(call_type, agent_uid);
 	}
 };
