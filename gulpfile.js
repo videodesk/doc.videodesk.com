@@ -41,7 +41,7 @@ gulp.task('images', function () {
 });
 
 gulp.task('fonts', function () {
-  gulp.src(['./bower_components/bootstrap/dist/fonts/**'])
+  gulp.src(['./bower_components/bootstrap/dist/fonts/**', './src/fonts/**'])
   .pipe(gulp.dest('./build/fonts/'));
 });
 
