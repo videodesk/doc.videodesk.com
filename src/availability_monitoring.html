@@ -103,7 +103,9 @@ function _videodeskGetAvailability(availability){
   available_chat: true,
   available_video: true,
   call_mode: "callcenter",
-  nb_agents_available: 2
+  nb_agents_available: 2,
+  is_text_capable: true,
+  is_video_capable: true
 }
 </code></pre>
             <ul>
@@ -112,7 +114,20 @@ function _videodeskGetAvailability(availability){
               <li><code>available_chat</code> (boolean) true when at least 1 agent is available for (text) chat</li>
               <li><code>available_video</code> (boolean) true when at least 1 agent is available for video chat</li>
               <li><code>nb_agents_available</code> (int) the number of available agents</li>
+              <li><code>is_text_capable</code> (boolean) availability and capacity. Depending on site configuration.</li>
+              <li><code>is_video_capable</code> (boolean) availability and capacity. Depending on site configuration, webuser's platform and network capacities the capacity to make a video call.</li>
             </ul>
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                Availability and Capacity are not the same thing
+              </div>
+              <div class="panel-body">
+                <p>
+                  Please keep in mind that <b>availability</b> refers to the <b>agent</b>'s connectivity status
+                  whereas <b>capacity</b> refers to the <b>webuser</b>'s capacity to contact the agent.
+                </p>
+              </div>
+            </div>
 
             <h3>Agent-list display mode</h3>
             <p>Here is a sample <code>availability</code> object in agent-list mode.</p>
@@ -124,27 +139,35 @@ function _videodeskGetAvailability(availability){
       "avatar": "https://bo1.videodesk.com/uploads/agent-avatars/no_operator_small.jpg",
       "username": "R\u00e9gis Duval",
       "job": "Agent",
-      "available_mode": "unavailable"
+      "available_mode": "unavailable",
+      "is_text_capable": false,
+      "is_video_capable": false
     },
     "51cb542ea17247e74fe259acb8f52d95": {
       "uid": "51cb542ea17247e74fe259acb8f52d95",
       "avatar": "https://bo1.videodesk.com/uploads/agent-avatars/no_operator_small.jpg",
       "username": "Gaspard Beernaert",
       "job": "",
-      "available_mode": "video"
+      "available_mode": "video",
+      "is_text_capable": true,
+      "is_video_capable": true
     },
     "8b71e5c43aa7dfbed5d98081efbcca0c": {
       "uid": "8b71e5c43aa7dfbed5d98081efbcca0c",
       "avatar": "https://bo1.videodesk.com/uploads/agent-avatars/no_operator_small.jpg",
       "username": "Charles Lahaye",
       "job": "",
-      "available_mode": "text"
+      "available_mode": "text",
+      "is_text_capable": true,
+      "is_video_capable": false
     }
   },
   "call_mode": "agentlist",
   "nb_agents_available": 2,
   "available_video": true,
-  "available_chat": true
+  "available_chat": true,
+  "is_text_capable": true,
+  "is_video_capable": false
 }
 </code></pre>
           <p>The variables are quite similar to call-center mode, but in agent-list mode, the <code>call_mode</code> is set to "agentlist" and the <code>agents</code> object is not empty.</p>
@@ -155,7 +178,9 @@ function _videodeskGetAvailability(availability){
   "avatar": "https://my.videodesk.com/uploads/agent-avatars/no_operator_small.jpg",
   "username": "Bob Dylan",
   "job": "Agent",
-  "available_mode": "unavailable"
+  "available_mode": "unavailable",
+  "is_text_capable": false,
+  "is_video_capable": false
 },
 </code></pre>
           <p>Agents are identifyed by uid, this uid is unique in our system and will not change.</p>
@@ -165,13 +190,10 @@ function _videodeskGetAvailability(availability){
             <li><code>username</code> (string) agent display name</li>
             <li><code>job</code> (string) agent display function</li>
             <li><code>available_mode</code> (string) availability. This can be "unavailable", "text" or "video".</li>
+            <li><code>is_text_capable</code> (boolean) availability and capacity. Depending on site configuration.</li>
+            <li><code>is_video_capable</code> (boolean) availability and capacity. Depending on site configuration, webuser's platform and network capacities the capacity to make a video call.</li>
           </ul>
-
           </article>
-
-
-
-
         </div>
       </div>
 
