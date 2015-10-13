@@ -45,7 +45,7 @@ gulp.task('fonts', function () {
   .pipe(gulp.dest('./build/fonts/'));
 });
 
-gulp.task('build', ['images', 'fonts'], function() {
+gulp.task('build', ['images', 'fonts', 'less', 'jslib'], function() {
   gulp.src('./src/*.html')
     .pipe(gulp.dest('./build/'));
-})
+});
