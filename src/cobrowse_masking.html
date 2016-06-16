@@ -102,59 +102,27 @@
             <h2>How to enable Cobrowse Masking</h2>
 
             <p>VideoDesk's cobrowse masking feature is activated by default as part of our PCI certification. By default, the cobrowse tool will hide:</p>
-
-            <ul>
-              <li>Input set as <code>type=password</code>.</li>
-              <li>Elements set as <code>.videodesk-cobrowse-mask</code>.</li>
-            </ul>
+            <h3>
+              <span>1. </span>Excluding Content</h3>
+              <p>In order to exclude the content (value) of html text input fields (input element with type text or text area element) from being captured, add a special html attribute to the element, as follows:</p>
+              <div>
+                <div>
+                  <pre>&nbsp;&lt;input type="text" unbluCapturingHint="block"/&gt;</pre>
+                </div>
+              </div>
+              <p>The co-browsing partner sees only placeholder characters (asterisks) instead of the content that is entered.</p>
+            <h3><span>2. </span>Protecting Content</h3>
+            <p>You can mark elements as protected, so that the consultant cannot edit them. To do so, add the attribute&nbsp;<code>unbluEditingHint</code> to the element, as follows:</p>
+            <div>
+              <div>
+                <pre>&nbsp;&lt;div unbluEditingHint="block"&gt;...blocked content...&lt;/div&gt;</pre>
+              </div>
+            </div>
+            <p>This attribute will show a lock icon for the consultant who clicks on the specific element.</p>
 
           </article>
 
           <article id="toc_usage">
-
-            <h2>Usage</h2>
-            <h3>Hiding zones or fields</h3>
-
-            <p>To hide a field or a zone, please add the <code>videodesk-cobrowse-mask</code> class to any element.</p>
-
-            <p>In this case, the word 'p4ssw0rd' will be hidden.</p>
-<pre><code class="html">
-  &lt;div>
-    Please note that your password is
-    &lt;span class="videodesk-cobrowse-mask">p4ssw0rd&lt;/span>
-  &lt;/div>
-</code></pre>
-
-            <p>In this case, the whole address will be hidden.</p>
-<pre><code class="html">
-  &lt;div>
-    Our product will be shipped to
-    &lt;address class="videodesk-cobrowse-mask">
-      Mozilla Foundation&lt;br>
-      1981 Landings Drive&lt;br>
-      Building K&lt;br>
-      Mountain View, CA 94043-0801&lt;br>
-      USA
-    &lt;/address>
-  &lt;/div>
-</code></pre>
-
-            <p>You can add this class to any form element too. In this case, only the question about pets will be displayed to the agent.</p>
-<pre><code class="html xml">
-  &lt;p>Who did you vote for ?&lt;/p>
-  &lt;select class="videodesk-cobrowse-mask">
-    &lt;option>George W Bush&lt;/option>
-    &lt;option>Al Gore&lt;/option>
-    &lt;option>I did not vote&lt;/option>
-  &lt;/div>
-  &lt;p>Why ?&lt;/p>
-  &lt;input type="text" class="videodesk-cobrowse-mask">
-  &lt;p>What is your favorite pet ?&lt;/p>
-  &lt;input type="text">
-  &lt;input type="submit" class="videodesk-cobrowse-mask" value="Send form">
-</code></pre>
-
-
             <h3>Let the user know</h3>
 
             <p>To reassure your webusers, you may want to explicitly point out the zones that are not displayed to the agent. To achieve this, use the <code>.videodesk-cobrowse-masking-marker</code> and <code>.videodesk-cobrowse-masking-marker-enabled</code> classes.</p>
