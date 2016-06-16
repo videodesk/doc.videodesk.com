@@ -109,10 +109,12 @@ function _videodeskGetAvailability(availability){
 {
   agents: {},
   available_chat: true,
+  available_audio: true,
   available_video: true,
   call_mode: "callcenter",
   nb_agents_available: 2,
   is_text_capable: true,
+  is_audio_capable: true,
   is_video_capable: true
 }
 </code></pre>
@@ -120,9 +122,11 @@ function _videodeskGetAvailability(availability){
               <li><code>call_mode</code> (string) "callcenter"</li>
               <li><code>agents</code> (object) an empty object</li>
               <li><code>available_chat</code> (boolean) true when at least 1 agent is available for (text) chat</li>
+              <li><code>available_audio</code> (boolean) true when at least 1 agent is available for audio chat</li>
               <li><code>available_video</code> (boolean) true when at least 1 agent is available for video chat</li>
               <li><code>nb_agents_available</code> (int) the number of available agents for text or video</li>
               <li><code>is_text_capable</code> (boolean) availability and capacity. Depending on site configuration.</li>
+              <li><code>is_audio_capable</code> (boolean) availability and capacity. Depending on site configuration, webuser's platform and network capacities the capacity to make a audio call.</li>
               <li><code>is_video_capable</code> (boolean) availability and capacity. Depending on site configuration, webuser's platform and network capacities the capacity to make a video call.</li>
             </ul>
             <div class="panel panel-warning">
@@ -149,6 +153,7 @@ function _videodeskGetAvailability(availability){
       "job": "Agent",
       "available_mode": "unavailable",
       "is_text_capable": false,
+      "is_audio_capable": false,
       "is_video_capable": false
     },
     "51cb542ea17247e74fe259acb8f52d95": {
@@ -158,6 +163,7 @@ function _videodeskGetAvailability(availability){
       "job": "",
       "available_mode": "video",
       "is_text_capable": true,
+      "is_audio_capable": true,
       "is_video_capable": true
     },
     "8b71e5c43aa7dfbed5d98081efbcca0c": {
@@ -167,14 +173,17 @@ function _videodeskGetAvailability(availability){
       "job": "",
       "available_mode": "text",
       "is_text_capable": true,
+      "is_audio_capable": false,
       "is_video_capable": false
     }
   },
   "call_mode": "agentlist",
   "nb_agents_available": 2,
   "available_video": true,
+  "available_audio": true,
   "available_chat": true,
   "is_text_capable": true,
+  "is_audio_capable": true,
   "is_video_capable": false
 }
 </code></pre>
@@ -188,6 +197,7 @@ function _videodeskGetAvailability(availability){
   "job": "Agent",
   "available_mode": "unavailable",
   "is_text_capable": false,
+  "is_audio_capable": false,
   "is_video_capable": false
 },
 </code></pre>
@@ -199,6 +209,7 @@ function _videodeskGetAvailability(availability){
             <li><code>job</code> (string) agent display function</li>
             <li><code>available_mode</code> (string) availability. This can be "unavailable", "text" or "video".</li>
             <li><code>is_text_capable</code> (boolean) availability and capacity. Depending on site configuration.</li>
+            <li><code>is_audio_capable</code> (boolean) availability and capacity. Depending on site configuration, webuser's platform and network capacities the capacity to make a audio call.</li>
             <li><code>is_video_capable</code> (boolean) availability and capacity. Depending on site configuration, webuser's platform and network capacities the capacity to make a video call.</li>
           </ul>
           </article>
