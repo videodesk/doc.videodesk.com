@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="videodesk documentation">
+    <meta name="author" content="gaspard">
+    <meta name="title" content="Live Chat Box API Documentation | videodesk">
+    <meta name="type" content="doc.videodesk.com/abstract_ui.html">
+    <meta name="url" content="doc.videodesk.com/abstract_ui.html">
+
+    <title>User identification | videodesk</title>
+
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">VideoDesk doc</a>
+          <ul class="nav">
+            <li class="pull-right">
+              <a href="https://www.videodesk.com" rel="me">Back to videodesk website</a>
+            </li>
+          </ul>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <ul class="nav-side" data-spy="affix" data-offset-top="10" data-offset-bottom="200">
+            <li><a href="abstract_ui.html">abstract UI</a></li>
+            <li><a href="availability_monitoring.html">availability monitoring</a></li>
+            <li><a href="call_button.html">call button</a></li>
+            <li><a href="cobrowse_masking.html">cobrowse masking</a><li>
+            <li><a href="data_flow_api.html">data flow api</a><li>
+            <li><a href="identity.html">identity</a><li>
+            <li><a href="iframe.html">iframe</a><li>
+            <li><a href="other.html">Other features</a></li>
+            <li><a href="persistent_conversation.html">persistent conversation</a><li>
+          </ul>
+        </div>
+        <div class="col-md-9">
+          <h1>Webuser identity</h1>
+          <p class="lead">Who are webusers, how to track them across several conversations.</p>
+
+          <article id="toc_what">
+            <h2>What is a webuser</h2>
+
+            <p>A webuser, often abbreviated as wu is a end-user on Videodesk using a webpage or a mobile app,
+            (s)he is identified by <code>webuser_uid</code> which is a unique hash enabling his (her) identification.</p>
+          </article>
+
+
+          <article id="toc_webuser_uid">
+            <h2>What is a <code>webuser_uid</code></h2>
+
+            <p>A <code>webuser_uid</code> is a randomly generated 36 characters long string structured as
+              <code>df9ce149-00e2-6b17-4e20-6f36a2b2b314</code> (8 hex characters, a dash, 4 hex characters, a dash, 4 hex characters, a dash 12 hex characters. You can fetch your webuser_uid by typing <code>_vdk.getContextParameter('webuser_uid')</code> in the console.</p>
+            <p>The <code>webuser_uid</code> is created by the front at the beginning of the first visit on a website or on the first app launch. Then, it is stored  locally on the device as a string on the mobile or a cookie on the browser. It is used to track visits and visitors for our stats/analytics system.</p>
+            <p>Only when there has been an interaction with an agent such as a call or a message, this <code>webuser_uid</code>.</p>
+            <p>Custom data written by the agent, call history and message history is based on the <code>webuser_uid</code> cookie. All the process of transiting data is documented in the <a href="data_flow_api.html">Data Flow API</a> page.</p>
+          </article>
+
+
+          <article id="toc_force">
+            <h2>Force identity</h2>
+
+            <p>In some situations, you may wish to force the authentification of a webuser, here is a list of cases: </p>
+            <ul>
+              <li>
+                Your website has a private access and you do not want to rely on cookies to identify your users
+              </li>
+              <li>
+                You have a service available on the web and on a mobile app
+              </li>
+            </ul>
+            <p>In both cases you want to insure continuity into the experience of your users across serveral devices (home computer, work computer, smart phone...). So that the agent could access to call history when receiving a call or the conversation history when a text-chat session starts.</p>
+
+<pre><code style="javascript">
+_videodesk.webuser_uid = 'your_user_token';
+</code></pre>
+            <div class="alert alert-warning" role="alert">
+              <b>Security warning</b>
+              <p>This token should not be guessable ! Don't rely on something simple like a name or a customer ID, otherwise a malicious user could steal users' conversation</p>
+            </div>
+
+          </article>
+
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; VideoDesk 2016</p>
+      </footer>
+    </div> <!-- /container -->
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/bootstrap.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="https://raw.githubusercontent.com/twbs/bootstrap/master/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+    window.addEventListener('load', function() {
+
+    });
+    </script>
+  </body>
+</html>
