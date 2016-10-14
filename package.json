@@ -10,12 +10,12 @@
     "type": "git",
     "url": "https://github.com/videodesk/doc.videodesk.com.git"
   },
-  "author": "gaspard@videodesk.copm",
-  "license": "copyright videodesk",
+  "author": "gaspard@videodesk.com",
+  "license": "DOC",
   "bugs": {
     "url": "https://github.com/videodesk/doc.videodesk.com/issues"
   },
-  "homepage": "https://github.com/videodesk/doc.videodesk.com",
+  "homepage": "http://doc.videodesk.com",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-bower": "0.0.10",
